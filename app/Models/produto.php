@@ -9,9 +9,21 @@ class produto extends Model
 {
     use HasFactory;
 
-   protected $filable = [
-    'nome',
-    'valor',
- ];
-}
+    protected $filable = [
+        'nome',
+        'valor',
+    ];
+    function getProdutosPesquisarIndex(string $search = '')
+    { {
+            $produto = $this->where(function ($query) use ($search) {
 
+                if ($search) {
+
+                    $query->where('nome', $search);
+                    $query->orWhere('nome', 'LIKE', "%{$search}");
+                }
+            })->get();
+            return $produto;
+        }
+    }
+}

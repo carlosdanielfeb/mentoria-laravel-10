@@ -16,7 +16,7 @@
             </a>
         </form>
         <div class="table-responsive mt-4">
-            <table class="table table-striped table-sm">
+            <table class="table table-st riped table-sm">
                 <thead>
                     <tr>
                         <th>Nome</th>
