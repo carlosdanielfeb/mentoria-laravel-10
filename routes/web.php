@@ -2,20 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/mentoria', function(){
-    return 'ola';
-});
+use App\Http\Controllers\produtosController;
+Route::prefix('produtos')->group(function () {
+      Route::get('/', [produtosController::class, 'index'])->name('produto.index');
+    });
+
+use App\Http\Controllers\vendasController;
+Route::prefix('vendas')->group(function () {
+        Route::get('/', [vendasController::class, 'index'])->name('vendas.index');
+      });
 
 
-Route::get('/teste/{id}', function() {
-    return 'certo';
-});
-
-Route::get('/teste/{token_usuario}', function() {
-    return 'certo';
-});
+use App\Http\Controllers\clientesController;
+Route::prefix('clientes')->group(function () {
+        Route::get('/', [clientesController::class, 'index'])->name('clientes.index');
+      });
