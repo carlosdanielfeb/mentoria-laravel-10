@@ -16,30 +16,34 @@
             </a>
         </form>
         <div class="table-responsive mt-4">
-            <table class="table table-st riped table-sm">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($findProduto as $produto)
+            @if ($findProduto->isEmpty())
+                <p>Não existe dados</p>
+            @else
+                <table class="table table-st riped table-sm">
+                    <thead>
                         <tr>
-                            <td>{{ $produto->nome }}</td>
-                            <td>{{ 'R$' . ' ' . number_format($produto->valor, 2, ',', '.') }}</td>
-                            <td>
-                                <a href="" class="btn btn-light btn-sm">
-                                    Editar
-                                </a>
-                                <a href="" class="btn btn-danger btn-sm">
-                                    Excluir
-                                </a>
-                            </td>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
                         </tr>
-                    @endforeach
-                </tbody>
+                    </thead>
+                    <tbody>
+                        @foreach ($findProduto as $produto)
+                            <tr>
+                                <td>{{ $produto->nome }}</td>
+                                <td>{{ 'R$' . ' ' . number_format($produto->valor, 2, ',', '.') }}</td>
+                                <td>
+                                    <a href="" class="btn btn-light btn-sm">
+                                        Editar
+                                    </a>
+                                    <a href="" class="btn btn-danger btn-sm">
+                                        Excluir
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+            @endif
             </table>
         </div>
     @endsection

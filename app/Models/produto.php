@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class produto extends Model
 {
     use HasFactory;
-
     protected $filable = [
         'nome',
         'valor',
@@ -16,11 +15,9 @@ class produto extends Model
     function getProdutosPesquisarIndex(string $search = '')
     { {
             $produto = $this->where(function ($query) use ($search) {
-
                 if ($search) {
-
                     $query->where('nome', $search);
-                    $query->orWhere('nome', 'LIKE', "%{$search}");
+                    $query->orWhere('nome', 'LIKE', "%{$search}%");
                 }
             })->get();
             return $produto;
