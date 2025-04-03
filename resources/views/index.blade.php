@@ -282,6 +282,7 @@
     </div>
 
     @yield('scripts')
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="/js/bootstrap.bundle.js"></script>
     <script type="text/javascript"
         src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=s8iNr9IG_4qnGLV7AjycTaXDo_o4m9XujY8hYo1GbFZwJlEWIXJ4uuYZyTbVffL5njLHqbumqltPWnjrcJargLOhRrGboGwVAYMV3qU5zvI"
@@ -289,6 +290,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"></script>
     <script src="/js/dashboard.js"></script>
     <script src="/docs/5.3/assets/js/color-modes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
 </body>
 
 </html>

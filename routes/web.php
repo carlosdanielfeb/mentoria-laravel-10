@@ -6,10 +6,20 @@ Route::get('/', function () {
     return view('index');
 });
 
+
+
 use App\Http\Controllers\produtosController;
+
 Route::prefix('produtos')->group(function () {
       Route::get('/', [produtosController::class, 'index'])->name('produto.index');
+      Route::get('/delete', [produtosController::class, 'delete'])->name('produto.delete');
+
     });
+
+
+
+
+
 
 use App\Http\Controllers\vendasController;
 Route::prefix('vendas')->group(function () {
