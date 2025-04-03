@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\formRequestProduto;
+use App\Http\Requests\Componentes;
 
 class ProdutosController extends Controller
 {
-  protected Produto $produto; // ou private, conforme sua necessidade
+  protected Produto $produto; 
 
   public function __construct(Produto $produto)
   {
@@ -22,4 +23,32 @@ class ProdutosController extends Controller
 
     return view('pages.produtos.paginacao', compact('findProduto'));
   }
+  public function delete(Request $request)
+  {
+  
+    $id = $request->id;
+    $buscaRegistro = Produto::find($id);
+    $buscaRegistro->delete();
+
+ return response()->json(['success' => true]);
+  }
+
+  public function cadastrarProduto(formRequestProduto $request)
+  {
+      if ($request->method() == "POST") {
+
+          $data = $request->except('_token');  
+          
+          $componentes = new Componentes();
+          $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
+
+          $data['created_at'] = now();
+          $data['updated_at'] = now();
+          Produto::insert($data);
+           
+          return redirect()->route('produto.index');
+      }
+      return view('pages.produtos.create');
+  }
+  
 }

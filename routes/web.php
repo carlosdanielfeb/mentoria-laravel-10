@@ -12,7 +12,10 @@ use App\Http\Controllers\produtosController;
 
 Route::prefix('produtos')->group(function () {
       Route::get('/', [produtosController::class, 'index'])->name('produto.index');
-      Route::get('/delete', [produtosController::class, 'delete'])->name('produto.delete');
+      Route::get('/cadastrarProduto', [produtosController::class, 'cadastrarProduto'])->name('cadastrar.produto');
+      Route::post('/cadastrarProduto', [produtosController::class, 'cadastrarProduto'])->name('cadastrar.produto');
+
+      Route::delete('/delete', [produtosController::class, 'delete'])->name('produto.delete');
 
     });
 
