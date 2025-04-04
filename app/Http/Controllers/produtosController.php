@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request ;
 use App\Http\Requests\formRequestProduto;
 use App\Http\Requests\Componentes;
 
@@ -50,5 +50,24 @@ class ProdutosController extends Controller
       }
       return view('pages.produtos.create');
   }
+
   
+//editar produto
+ public function atualizarProduto(formRequestProduto $request, $id)
+  {
+      if ($request->method() == "PUT") {
+        //atualiza os dados
+          $data = $request->all();           
+          $componentes = new Componentes();
+          $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
+          $buscaRegistro = Produto::find($id);
+          $buscaRegistro->update($data);
+
+          return redirect()->route('produto.index');
+      }   
+       $findProduto = Produto::where('id', '=', $id)->first();
+      return view('pages.produtos.atualiza', compact('findProduto'));
+
+
+  }
 }

@@ -1,5 +1,5 @@
 function deleteRegistroPaginacao(rotaUrl, idDoRegistro) {
-  if (confirm("Deseja confirmar a exclusão?")) {
+  if (confirm("Deseja confirmar a exclusão?")){
     $.ajax({
       url: rotaUrl,
       method: "DELETE",
