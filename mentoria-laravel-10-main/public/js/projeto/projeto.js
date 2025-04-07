@@ -36,38 +36,27 @@ $("#mascara_nome").on("input", function () {
   this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, "");
 });
 
-//formatação do cep
-document.getElementById("cep").addEventListener("blur", async function () {
-  let cep = this.value.replace(/\D/g, '');
 
-  if (cep !== "") {
-      let validacep = /^[0-9]{8}$/;
+$("#cep").blur(function(){
+  var cep = $(this).val().replace(/\D/g, '');
+  if(cep != ""){
+      var validacep = /^[0-9]{8}$/;
+      if(validacep.test(cep)){
+          $("#logradouro").val("Buscando dados...");
+          $("#bairro").val("Buscando dados...");
+          $("#cidade").val("Buscando dados...");
 
-      if (validacep.test(cep)) {
-          // Limpa os campos antes da requisição
-          ["Logradouro", "Bairro", "Cidade", "uf", "ibge"].forEach(id => {
-              document.getElementById(id).value = "";
-          });
-
-          try {
-              let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-              let dados = await response.json();
-
-              if (!dados.erro) {
-                  document.getElementById("Logradouro").value = dados.logradouro.toUpperCase() || "";
-                  document.getElementById("Bairro").value = dados.bairro.toUpperCase() || "";
-                  document.getElementById("Cidade").value = dados.localidade.toUpperCase() || "";
-                  document.getElementById("uf").value = dados.uf.toUpperCase() || "";
-                  document.getElementById("ibge").value = dados.ibge || "";
+          $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados){
+              if(!("erro" in dados)){
+                  $("#logradouro").val(dados.logradouro.toUpperCase());
+                  $("#bairro").val(dados.bairro.toUpperCase());
+                  $("#cidade").val(dados.localidade.toUpperCase());
               } else {
-                  alert("CEP não encontrado de forma automatizada. Digite manualmente ou tente novamente.");
+                  alert("CEP não encontrado de forma automatizada digite manualmente ou tente novamente.");
               }
-          } catch (error) {
-              console.error("Erro ao buscar o CEP:", error);
-              alert("Erro ao buscar o CEP. Verifique sua conexão e tente novamente.");
-          }
+          });
       } else {
-          alert("Formato de CEP inválido.");
+          alert("CEP inválido.");
       }
   }
 });

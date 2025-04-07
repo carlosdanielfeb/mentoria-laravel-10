@@ -11,7 +11,7 @@
 
         <div class="form-group">
             <label><b>Nome</b></label>
-            <input id="mascara_nome" type="text" name="nome"
+            <input id="nome" type="text" name="nome"
                 value="{{ isset($findCliente->nome) ? $findCliente->nome : old('nome') }}"
                 class="form-control @error('nome') is-invalid @enderror">
             @error('nome')
@@ -30,20 +30,20 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
         <br>
 
-        <div class="form-group">
-            <label><b>Endereço</b></label>
-            <input id="endereco" type="text" name="endereco"
-                value="{{ isset($findCliente->endereco) ? $findCliente->endereco : old('endereco') }}"
-                class="form-control @error('endereco') is-invalid @enderror">
-            @error('endereco')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-
+<div class="form-group">
+    <label><b>CEP</b></label>
+    <input id="cep" type="text" name="cep"
+        value="{{ isset($findCliente->cep) ? $findCliente->cep : old('cep') }}"
+        class="form-control @error('cep') is-invalid @enderror">
+    @error('cep')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
         <br>
+
+       
 
         <div class="form-group">
             <label><b>Logradouro</b></label>
@@ -51,18 +51,6 @@
                 value="{{ isset($findCliente->logradouro) ? $findCliente->logradouro : old('logradouro') }}"
                 class="form-control @error('logradouro') is-invalid @enderror">
             @error('logradouro')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <br>
-
-        <div class="form-group">
-            <label><b>CEP</b></label>
-            <input id="cep" type="text" name="cep"
-                value="{{ isset($findCliente->cep) ? $findCliente->cep : old('cep') }}"
-                class="form-control @error('cep') is-invalid @enderror">
-            @error('cep')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -81,9 +69,17 @@
 
         <br>
 
-      
-
+        <div class="form-group">
+            <label><b>Endereço</b></label>
+            <input id="endereco" type="text" name="endereco"
+                value="{{ isset($findCliente->endereco) ? $findCliente->endereco : old('endereco') }}"
+                class="form-control @error('endereco') is-invalid @enderror">
+            @error('endereco')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
         <br>
+          <br>
 
         <button type="submit" class="btn btn-success">CONFIRMAR</button>
     </form>

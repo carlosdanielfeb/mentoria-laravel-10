@@ -43,18 +43,21 @@
                             <td>{{ $cliente->endereco }}</td>
                             <td>{{ $cliente->logradouro }}</td>
                             <td>{{ $cliente->cep }}</td>
-                            <td>{{ $cliente->bairro }}</td>                              
+                            <td>{{ $cliente->bairro }}</td>   
+
                                 <td>
                                     <a href="{{ route('atualizar.cliente', $cliente->id) }}" class="btn btn-light btn-sm">
                                         Editar
                                     </a>
-
+                                </td>
+                                <td>
                                     <meta name='csrf-token' content=" {{ csrf_token() }}" />
                                     <a onclick="deleteRegistroPaginacao( '{{ route('cliente.delete') }}', {{ $cliente->id }})"
                                         class="btn btn-danger btn-sm">
                                         Excluir
                                     </a>
                                 </td>
+                                
                             </tr>
                         @endforeach
 
