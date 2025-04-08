@@ -41,4 +41,9 @@ use App\Http\Controllers\clientesController;
 use App\Http\Controllers\vendasController;
     Route::prefix('vendas')->group(function () {
       Route::get('/', [vendasController::class, 'index'])->name('vendas.index');
+
+      Route::get('/cadastrarVenda', [vendasController::class, 'cadastrarVendas'])->name('cadastrar.venda');
+      Route::post('/cadastrarVenda', [vendasController::class, 'cadastrarVendas'])->name('cadastrar.venda');   
+    
+
     });
